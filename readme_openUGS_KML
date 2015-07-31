@@ -1,0 +1,13 @@
+Go to the "KML settings" tab, click on the button "Browse".
+
+Select the path of your desired KML file and enter the name of your fle with the extension .kml. The file will be created to export the GPS data.
+
+Once selected the desired kml file, click on (Check) the checkbox "Export data". 
+
+When the data from the flight computer is avaliable the software export the lon, lat and alt data to the desired KML file. If the data does not change, the software does not export new data.
+
+
+In GoogleEarth add a new network link by using the desired KML file and use a periodically refresh.
+
+
+

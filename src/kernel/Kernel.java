@@ -220,53 +220,7 @@ public class Kernel extends Thread implements ChannelInterface, KernelInterface 
     }
 
     
-    public void reconnectMatlab(boolean isUDP){
 
-        try {
-            client.closeConnection();
-         
-            client = null;
-
-        } catch (Exception e) {
-        }
-
-        try {
-            serialManager.closeConnection();
-            serialManager.stop();
-            serialManager = null;
-
-        } catch (Exception e) {
-        }
-
-
-        if (isUDP) {
-
-            try {
-                connectionParameters.setConnectionType(ConnectionParameters.MATLAB);
-                connectionParameters.setPortDecNumber(Integer.parseInt(gui.getUDPPort()));
-                client = new ClientToMatlab(Integer.parseInt(gui.getUDPPort()), this);
-                activateConnectionLostWatchdog();            
-            } catch (SocketException ex) {
-                Logger.getLogger(Kernel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } else {
-
-            connectionParameters.setConnectionType(ConnectionParameters.SERIAL_TTY);
-            connectionParameters.setBaudRate(gui.getRate());
-            connectionParameters.setPortID(gui.getSerialPort());
-            connectionParameters.setFlowControlIn(gui.getFlowControl()[0]);
-            connectionParameters.setFlowControlOut(gui.getFlowControl()[1]);
-            connectionParameters.setDataBits(gui.getDataBits());
-            connectionParameters.setStopBits(gui.getStopBits());
-
-            // serialManager = new SerialManager(this, gui.getSerialPort(), gui.getRate(), gui.getFlowControl()[0], gui.getFlowControl()[1], gui.getDataBits(), gui.getStopBits(), gui.getParity());
-            serialManager = new SerialManager(this, connectionParameters);
-            activateConnectionLostWatchdog();
-
-        }
-
-    }
 
     /**
      *
